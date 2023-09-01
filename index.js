@@ -49,8 +49,27 @@ class Player {
     }
 }
 
+//Create a class for platforms for player object to jump on
+class Platform {
+    constructor() {
+      this.position = {
+        x: 200,
+        y: 100
+      }
+
+      this.width = 200
+      this.height = 20
+    }
+}
+//Draw a blue rectangle for the platform
+function draw() {
+    ctx.fillStyle = 'blue';
+    ctx.fillRect(this.position.x, this.position.y, this.width, this.height);
+}
 // Create new player object
 const player = new Player();
+// Create new Platform object
+const platform = new Platform();
 // Create keys object (using for x = 0 stopping horizontal movement)
 const keys = {
     right: {
@@ -59,7 +78,7 @@ const keys = {
     left: {
         pressed: false
     }
-}
+};
 
 
 // Animates velocity of gravity on player object
@@ -68,6 +87,8 @@ function animate() {
     //Makes sure to clear canvas of banner like effect and maintains the square shape
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     player.update();
+    //Draws the platform
+    platform.draw();
     //Conditional, as long as (If) user holds down the right key, 
     //player object will move horizontally to the right by a velocity of 5
     if (keys.right.pressed) {
@@ -82,6 +103,15 @@ function animate() {
     //Else left pressed = false (key is released and comes up)
     //player object will stop moving horizontally to the left. (velocity = 0)
     } else player.velocity.x = 0
+    //Conditional for Object Collision detection. Determines whether or not the bottom of the 
+    // player object is touching the top of the platform object.
+    // player object will fall if it passes the limit of the platform position.
+    if (player.position.y + player.height <= platform.position.y 
+        && player.position.y + player.velocity.y >= platform.position.y 
+        && player.position.x + player.width >= platform.position.x) {
+        player.velocity.y = 0 && player.position.x <= platform.position.x + platform.width
+    }
+//This makes player object fall down when it is not on the platform object.
 };
 
 animate();

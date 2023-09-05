@@ -47,6 +47,6 @@ Throughout the development process, several challenges were encountered:
 
 There are some unresolved issues in the game:
 
-1. **Win State**: Currently working on implementing a win state for the game.
+1. **Win State**: Currently working on implementing a better win state for the game.
 
 2. **Game Crashes**: The game crashes intermittently, and debugging is ongoing.

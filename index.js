@@ -16,6 +16,8 @@ window.addEventListener('load', function(){
   //Declare Score
   let score = 0;
 
+  const winScore = 20;
+
   //Declare Game Over
   let gameOver = false;
 
@@ -137,7 +139,7 @@ window.addEventListener('load', function(){
            if (this.frameX >= this.maxFrame) this.frameX = 0;
            else this.frameX++;
            //Resets frameTimer back to 0 so it can count again
-           this.frameTimber = 0;
+           this.frameTimer = 0;
           } else {
             this.frameTimer += deltaTime;
           }
@@ -278,7 +280,7 @@ window.addEventListener('load', function(){
          if (this.frameX >= this.maxFrame) this.frameX = 0;
          else this.frameX++;
          //Resets frameTimer back to 0 so it can count again
-         this.frameTimber = 0;
+         this.frameTimer = 0;
       } else {
           this.frameTimer += deltaTime;
       }
@@ -302,7 +304,7 @@ window.addEventListener('load', function(){
         //Push enemies (enemy1 instances) into empty enemies array
         enemies.push(new Enemy(canvas.width, canvas.height));
         //Randomize the enemy interval 
-        randomEnemyInterval - Math.random() * 1000 + 500;
+        randomEnemyInterval = Math.random() * 1000 + 500;
         //Reset the timer back to zero to start the count again. 
         enemyTimer = 0;
       //This method ensures that it will work on both fast an slower computers the same.
@@ -328,6 +330,14 @@ window.addEventListener('load', function(){
     //Manually created a shadow on text for cosmetic purposes also this method does not cause drop in framerate
     context.fillStyle = 'white';
     context.fillText('Score: ' + score, 20, 52);
+    // Check if the player has reached the win condition.
+    if (score >= winScore) {
+      context.textAlign = 'center';
+      context.fillStyle = 'green'; 
+      context.fillText('YOU WIN!', canvas.width / 2, 200);
+      context.fillStyle = 'white';
+      context.fillText('GAME OVER, try again!', canvas.width/2 + 2, 202);
+    }
     //Display Game Over Text if Player is killed
     if (gameOver){
         context.textAlign = 'center';
@@ -347,7 +357,7 @@ window.addEventListener('load', function(){
   const player = new Player(canvas.width, canvas.height);
   
   //Create new instance for the Background
-  const background = new Background(canvas.width, canvas,height);
+  const background = new Background(canvas.width, canvas.height);
   
   //Holds the timestamp from the previous frame
   let lastTime = 0;

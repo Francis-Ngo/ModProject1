@@ -1,12 +1,14 @@
 //Version2: Had to wipe my previous build code due to multiple errors, game breaks,
 // and inability to add my assets at a specific point. Trying a different method.
 
-//Wrap entire game code in an load event listener so it waits and lets all game assets
+//Wrap entire game code in an load event listener so it waits and lets all game assets load
+//Custom variables will not be confused
 
 window.addEventListener('load', function(){
   const canvas = document.getElementById('canvas1')
   //Declare instance of built-in canvas 2D api that holds all the drawing methods and properties
   //Needed to Animate the game
+  //ctx = context instance of build-in canvas 2D api that holds all of the drawing methods and properties
   const ctx = canvas.getContext('2d');
   canvas.width = 800;
   canvas.height = 720;
@@ -34,7 +36,7 @@ window.addEventListener('load', function(){
       //This is called lexical scoping.
 
       //Listens for user input keydown on these Arrow(Direction) keys
-      window.addEventListener('keydown', e => {
+      window.addEventListener('keydown', function(e) => {
         //Conditional to check IF these movement keys are pressed down = True
         if ((e.key === 'ArrowDown' ||
             e.key === 'ArrowUp' || 
@@ -47,7 +49,7 @@ window.addEventListener('load', function(){
             this.keys.push(e.key);
         }
         
-      });
+      })
       //Listen for the same keys above user input keyup (key release)
       window.addEventListener('keyup', e => {
         if (e.key === 'ArrowDown' ||
@@ -58,7 +60,7 @@ window.addEventListener('load', function(){
             this.keys.splice(this.keys.indexOf(e.key), 1);
         }
         
-      });
+      })
     }
 
   }
@@ -224,7 +226,7 @@ window.addEventListener('load', function(){
         if (this.x < 0 - this.width) this.x = 0;
       }
     
-  };
+  }
 
   //Declare Enemy class for generating enemies on screen (creates a single enemy object)
   class Enemy {
@@ -294,11 +296,11 @@ window.addEventListener('load', function(){
         score++;
       }
     }
-  };
+  }
 
    
   //function responsible for adding, animating, and removing enemies from the screen
-  function handleEnemies(deltaTIme){ 
+  function handleEnemies(deltaTime){ 
     //Adds new enemy on screen every 2000 milliseconds (2 secs) by pushing it into the enemies array.
     if (enemyTimer > enemyInterval + randomEnemyInterval){
         //Push enemies (enemy1 instances) into empty enemies array
@@ -320,7 +322,7 @@ window.addEventListener('load', function(){
     //filter() array method creates a new array with all elements that pass the test implemented by the provided function
     enemies = enemies.filter(enemy => !enemy.markedForDeletion);
    
-  };
+  }
   //function used to display score, you win, and game over message
   function displayStatusText(context) {
     context.font = '40px Helvetica';
@@ -347,11 +349,11 @@ window.addEventListener('load', function(){
         context.fillStyle = 'white';
         context.fillText('GAME OVER, try again!', canvas.width/2 + 2, 202);
     }
-  };
+  }
 
   //Declare var for input handler class that runs all the code inside the InputHandler Constructor
   //And event listener is applied 
-  const input = new InputHandler();
+   = new InputHandler();
 
   //Create new instance for the Player
   const player = new Player(canvas.width, canvas.height);

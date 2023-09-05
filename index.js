@@ -2,9 +2,8 @@
 // and inability to add my assets at a specific point. Trying a different method.
 
 //Wrap entire game code in an load event listener so it waits and lets all game assets
-//(sprite sheets and images) load fully before it executes the code in the callback function.
 
-window.addEventListener("load", function(){
+window.addEventListener('load', function(){
   const canvas = document.getElementById('canvas1')
   //Declare instance of built-in canvas 2D api that holds all the drawing methods and properties
   //Needed to Animate the game
@@ -393,3 +392,4 @@ window.addEventListener("load", function(){
   animate(0);
 
 });
+

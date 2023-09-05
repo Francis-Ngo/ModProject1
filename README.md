@@ -23,7 +23,7 @@ You can play the game live at [https://francis-ngo.github.io/]
 
 ## Approach
 
-Describe the approach you took when developing the game. Mention if you followed any specific tutorials or techniques for game development in vanilla JavaScript.
+Could not use any game engines. Googled and filtered through videos and techniques for game development in vanilla JavaScript. Had to use canvas api.
 
 ## Installation Instructions
 
@@ -49,4 +49,5 @@ There are some unresolved issues in the game:
 
 1. **Win State**: Currently working on implementing a better win state for the game.
 
-2. **Game Crashes**: The game crashes intermittently, and debugging is ongoing.
+2. **Game Crashes**: The game crashes a lot, and debugging is ongoing.
+3. **Draw and Animation Failures**: Canvas is having a really hard time drawing and animating the sprites. Keeps giving me errors in console.
